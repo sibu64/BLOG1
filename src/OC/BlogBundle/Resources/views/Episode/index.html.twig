@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{parent()}}
+{% endblock %}
+    
+
+{% block body %}
+    <h1>Liste des épisodes</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Contenu</th>
+                <th>Creation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for episode in episodes %}
+            <tr>
+                <td><a href="{{ path('admin_episode_show', { 'id': episode.id }) }}">{{ episode.id }}</a></td>
+                <td>{{ episode.titre }}</td>
+                <td>{{ episode.contenu }}</td>
+                <td>{% if episode.creation %}{{ episode.creation|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_episode_show', { 'id': episode.id }) }}">Montrer</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_episode_edit', { 'id': episode.id }) }}">Modifier</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li class="center">
+            <a href="{{ path('admin_episode_new') }}">Créer un nouvel épisode</a>
+        </li>
+        <li>
+           <a class="btn btn-primary btn-block" href="{{url('admin_commentaire_index')}}">Gérer les commentaires</a>
+    </ul>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}OCUserBundle:Security:login{% endblock %}
+
+{% block body %}
+    <h1>Bienvenue sur le blog de l'écrivain Jean Forteroche!</h1>
+    
+    <form action="{{ path('oc_user_logout') }}" method="post">
+   <input type="submit" value="Se déconnecter"/>
+   </form>
+    <form action="{{ path('oc_user_login') }}" method="post">
+   <input type="submit" value="Se connecter"/>
+   </form>
+{% endblock %}

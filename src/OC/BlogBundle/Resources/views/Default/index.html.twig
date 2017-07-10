@@ -1,0 +1,65 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% endblock %}
+{% block stylesheets %}
+    {{parent()}}
+{% endblock %}
+{% block body %}
+    <div class="container">
+
+
+        <h1>Bienvenue sur le Blog du nouveau roman de Jean Forteroche: "Billet simple pour l'Alaska"</h1>
+        <div class="contenu col-lg-12">
+            <h2>{{episode.titre}}</h2>
+            {{episode.contenu|raw}}
+            {{episode.creation|date('d/m/Y')}}
+
+        </div>
+
+        <div class="contenu col-lg-12">
+            {% for commentaire in episode.commentaires %}
+                {% if not commentaire.modere %}
+                    <div> 
+                        <a href='{{path('oc_blog_signalement',{'commentaire':commentaire.id})}}?token={{csrf_token('signalementToken')}}'>Signaler le commentaire</a>
+                        {{commentaire.contenu}} 
+                        {{commentaire.pseudo}}
+                        {{commentaire.email}} 
+                        {{commentaire.creation|date('d/m/Y')}}
+                        {{commentaire.episode.id}}
+                    </div>
+                {% endif %}
+            {% endfor %}        
+        </div>
+
+
+        <div class="col-lg-12 text-right">
+            <h3 class="text-center btn-primary  " style="font-weight: bold;">Commentez!</h3>
+            {{ form_start(createForm) }}
+            {{ form_widget(createForm) }}
+            <input type="submit" class="btn btn-primary text-right btn-block" value="Envoyer" />
+            {{ form_end(createForm) }}
+        </div>
+
+
+
+        {% if nbEpisodes > 0 %}
+            <nav aria-label="Page navigation" class="text-center">
+                <ul class="pagination">
+                    {% if numeroEpisode!=1 %}  
+                        <li> <a href="{{ path('oc_blog_homepage', {'numeroEpisode':1}) }}" aria-label="First"><span aria-hidden="true">Premier</span></a></li>
+                        {% endif %}
+
+                    {% for i in 1..nbEpisodes %}
+                        <li {% if numeroEpisode==loop.index %}class="active"{% endif %}><a href="{{ path('oc_blog_homepage', {'numeroEpisode':loop.index}) }}">{{ loop.index }} </a></li>
+                        {% endfor %}
+
+                    {% if numeroEpisode!=nbEpisodes %} 
+                        <li><a href="{{ path('oc_blog_homepage', {'numeroEpisode':nbEpisodes}) }}" aria-label="Last"><span aria-hidden="true">Dernier</span></a></li>
+                        {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
+
+    </div>
+{% endblock %}
+

@@ -1,0 +1,11 @@
+oc_user_homepage:
+    path:     /user
+    defaults: { _controller: OCUserBundle:Default:index }
+
+oc_user_login:
+    path:     /login
+    defaults: { _controller: OCUserBundle:Security:login }
+
+oc_user_logout:
+    path:     /logout
+    

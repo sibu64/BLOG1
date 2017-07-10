@@ -1,0 +1,46 @@
+body{
+    background-image: url("../images/alleeEnneigee.jpg");
+    margin:0;
+    padding:0;    
+}
+
+h1{
+    color: #C82829;
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+    font-size: 60px;
+    
+}
+
+table{
+   background-color: white; 
+}
+
+ul{
+   list-style-type: none; 
+   background-color: white;
+   
+}
+
+a{
+    color:#C82829;
+}
+
+.center{
+    text-align: center;
+}
+
+
+.contenu{
+    background-color: white;
+}
+
+.control{
+    width:95%;   
+}
+
+label{
+    font-size: 20px;
+}
+
+

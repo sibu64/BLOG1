@@ -1,0 +1,35 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+    encoders:
+        OC\UserBundle\Entity\User: bcrypt
+            
+
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        oc_user:
+            entity:
+                class: 'OCUserBundle:User'
+                property: 'email'
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: ~
+            logout:
+                path:   /logout
+                target: /
+
+            guard:
+                authenticators:
+                    - 'oc_user.security.email_authenticator'
+                    
+            remember_me:
+                secret: '%secret%'
+                
+    access_control:
+        - { path: ^/admin, roles: IS_AUTHENTICATED_REMEMBERED }

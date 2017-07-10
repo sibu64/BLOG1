@@ -1,0 +1,4 @@
+services:
+    oc_user.security.email_authenticator:
+        class: OC\UserBundle\Security\EmailAuthenticator
+        arguments: ['@router.default','@security.password_encoder']

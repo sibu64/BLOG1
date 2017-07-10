@@ -1,0 +1,38 @@
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Pseudo</th>
+                        <th>Contenu</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for commentaire in commentaires %}
+                        <tr>
+                            <td>{{ commentaire.email }}</td>
+                            <td>{{ commentaire.pseudo }}</td>
+                            <td>{{ commentaire.contenu }}</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('admin_commentaire_edit', { 'id': commentaire.id }) }}">Modifier</a>
+                                    </li>
+                                    {% if boutonAutorise is defined %} 
+                                    <li>
+                                        
+                                        <a href='{{path('oc_blog_licite',{'commentaire':commentaire.id})}}?token={{csrf_token('liciteToken')}}'>Autoriser le commentaire</a>
+                                    </li>
+                                    {% endif %}
+                                    {% if boutonModere is defined %}
+                                    <li>                                        
+                                        <a href='{{path('oc_blog_modere',{'commentaire':commentaire.id})}}?token={{csrf_token('modereToken')}}'>Modérer le commentaire</a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>

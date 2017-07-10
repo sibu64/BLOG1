@@ -1,0 +1,20 @@
+admin_commentaire_index:
+    path:     /
+    defaults: { _controller: "OCBlogBundle:Commentaire:index" }
+    methods:  GET
+
+
+admin_commentaire_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "OCBlogBundle:Commentaire:edit" }
+    methods:  [GET, POST]
+
+
+oc_blog_licite:
+    path: /licite/{commentaire}
+    defaults:  { _controller: OCBlogBundle:Commentaire:liciteCommentaire}
+
+oc_blog_modere:
+    path: /modere/{commentaire}
+    defaults:  { _controller: OCBlogBundle:Commentaire:modereCommentaire}
+

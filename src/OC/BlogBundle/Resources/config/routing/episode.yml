@@ -1,0 +1,24 @@
+admin_episode_index:
+    path:     /
+    defaults: { _controller: "OCBlogBundle:Episode:index" }
+    methods:  GET
+
+admin_episode_show:
+    path:     /{id}/show
+    defaults: { _controller: "OCBlogBundle:Episode:show" }
+    methods:  GET
+
+admin_episode_new:
+    path:     /new
+    defaults: { _controller: "OCBlogBundle:Episode:new" }
+    methods:  [GET, POST]
+
+admin_episode_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "OCBlogBundle:Episode:edit" }
+    methods:  [GET, POST]
+
+admin_episode_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "OCBlogBundle:Episode:delete" }
+    methods:  DELETE

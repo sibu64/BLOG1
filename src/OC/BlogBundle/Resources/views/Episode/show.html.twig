@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+    <h1>Episode</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ episode.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ episode.titre }}</td>
+            </tr>
+            <tr>
+                <th>Contenu</th>
+                <td>{{ episode.contenu }}</td>
+            </tr>
+            <tr>
+                <th>Creation</th>
+                <td>{% if episode.creation %}{{ episode.creation|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li class="center">
+            <a href="{{ path('admin_episode_index') }}" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn btn-block  btn-info  text-center">Retour à la liste</a>
+        </li>
+        <li class="center">
+            <a href="{{ path('admin_episode_edit', { 'id': episode.id }) }}" class="col-xs-12 col-sm-12 col-md-12 col-lg-12  btn  btn-primary  text-center" style="margin-top: 10px;">Modifier</a>
+        </li>
+        <li class="center">
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Supprimer" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn btn-block btn-danger  text-center" style="margin-top: 10px;">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+    </div>
+{% endblock %}

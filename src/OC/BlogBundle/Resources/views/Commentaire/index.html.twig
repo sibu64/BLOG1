@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste des commentaires</h1>
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 style="color:#C82829;" class="text-center">Commentaires licites</h2>
+            {{ include('OCBlogBundle:Commentaire:displayComment.html.twig', {'commentaires':commentairesLicites,boutonModere:true})}}
+        </div>
+        <div class="col-lg-12">
+            <h2 style="color:#C82829;" class="text-center">Commentaires signalés</h2>
+            {{ include('OCBlogBundle:Commentaire:displayComment.html.twig', {'commentaires':commentairesSignales,boutonAutorise:true, boutonModere:true})}}
+        </div>
+        <div class="col-lg-12">
+            <h2 style="color:#C82829;" class="text-center">Commentaires modérés</h2>
+            {{ include('OCBlogBundle:Commentaire:displayComment.html.twig', {'commentaires':commentairesModeres, boutonAutorise:true})}}
+        </div>
+    </div>
+        
+            <a class="btn btn-primary btn-block" href="{{url('admin_episode_index')}}">Gérer les épisodes</a>  
+
+
+{% endblock %}
+
+

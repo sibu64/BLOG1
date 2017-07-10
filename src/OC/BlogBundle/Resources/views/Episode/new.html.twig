@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{parent()}}
+{% endblock %}
+
+
+{% block body %}
+    <div class="container">
+    <h1>Création d'un nouvel épisode</h1>
+
+    
+    <ul style="background-color: transparent;">
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <li> 
+            <input type="submit" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn btn-block btn-success text-center" value="Créer" />
+        </li>
+    {{ form_end(form) }}
+
+    
+        <li class="center">
+            <a href="{{ path('admin_episode_index') }}" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn btn-block  btn-info  text-center" style="margin-top: 10px;">Retour à la liste</a>
+        </li>
+    </ul>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{parent()}}
+    {% endblock %}

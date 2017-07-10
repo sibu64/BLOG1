@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Modifier un épisode</h1>
+         
+        <div>
+
+        <ul style="background-color: transparent;">
+
+        {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <li> 
+            <input type="submit" class="col-xs-12 col-sm-12 col-md-12 col-lg-12  btn btn-block btn-primary text-center" style="margin-bottom:10px;{#margin-left:40px;padding-left:40px;#}{#margin-left:40px;#}" value="Modifier" />
+        </li>
+        {{ form_end(edit_form) }}
+        
+        
+            <li>
+                <a  href="{{ path('admin_episode_index') }}" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn btn-block  btn-info text-center" style="margin-bottom:10px;padding-left:40px; ">Retour à la liste</a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                <input type="submit" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn btn-block btn-danger text-center" value="Supprimer"/>
+                {{ form_end(delete_form) }}
+            </li>
+        </ul>
+        </div>
+    </div>
+    
+{% endblock %}
