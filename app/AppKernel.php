@@ -17,6 +17,7 @@ class AppKernel extends Kernel {
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new OC\UserBundle\OCUserBundle(),
             new OC\BlogBundle\OCBlogBundle(),
+           
             //new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             
         ];

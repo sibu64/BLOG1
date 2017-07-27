@@ -1,23 +1,38 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}OCUserBundle:Security:login{% endblock %}
+{% block title %}{% endblock %}
 
 {% block body %}
-    <h1>Welcome to the Security:login page</h1>
-
+    <div class="container">
+    <h1>Bienvenue sur la page de connection</h1>
+    {#<ul>
+{% for error in errors %}
+    <li>{{ error.message }}</li>
+{% endfor %}
+</ul>#}
+    {#{{ form(reinitialisationForm, {'attr': {'novalidate': 'novalidate'}}) }}#}
+{#{{ form_errors(reinitialisationForm.username) }}#}
     <form method="POST">
-        <label for="_username">Entrez votre e-mail</label>
-        <input type="text" name="_username" required>
-        <label for="_password">Entrez votre mot de passe</label>
-        <input type="password" name="_password" required>        
-        <label for="_remember_me">Se souvenir de moi</label>
-        <input type="checkbox" name="_remember_me">
-
-        <button type="submit">
+        <div class="row">
+        <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="_username">Entrez votre e-mail</label>
+        <input class="col-lg-10 col-md-10 col-sm-10 col-xs-10" type="text" name="_username" required>
+        </div>
+        <div class="row">
+        <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="_password">Entrez votre mot de passe</label>
+        <input class="col-lg-10 col-md-10 col-sm-10 col-xs-10" type="password" name="_password" required> 
+        </div>
+        <div class="row">
+        <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="_remember_me">Se souvenir de moi</label>
+        <input class="col-lg-10 col-md-10 col-sm-10 col-xs-10" type="checkbox" name="_remember_me">
+        </div>
+        
+        <button class="btn btn-success btn-block" type="submit">
             Se Connecter
         </button>
-
-   
+        <a class="btn btn-danger btn-block" style="margin-top:10px;" href="{{path('oc_user_logout')}}">Se déconnecter</a>
         
+        <a class="btn btn-info btn-block" href="{{path('requete')}}" style="margin-top:10px;">Mot de passe oublié</a>
+   
+    </div>   
     
 {% endblock %}

@@ -1,0 +1,14 @@
+{% extends "::default/base.html.twig" %}
+  
+{% block body %}
+    <h1 class="text-center">Aie! Une erreur s'est produite! </h1>
+    <h2 class="text-center">Le serveur a renvoyé "{{ status_code }} {{ status_text }}".</h2>
+
+    <div class="text-center">
+      Quelque chose est cassé. S'il vous plait envoyez nous un email à [email] et laissez nous savoir 
+      ce que vous avez fait quand cette erreur s'est produite. Nous résoudrons cela cela aussitôt que possible. Pardonnez 
+      nous pour le désagrément causé.
+    </div> 
+    <a href="{{ path('oc_blog_homepage') }}"><p>Retourner à l'accueil</p></a>
+{% endblock %}
+

@@ -5,61 +5,79 @@
     {{parent()}}
 {% endblock %}
 {% block body %}
-    <div class="container">
+    
+    <div id="contenu" class="container">
+        <div class="containerAlpha transbox">
+            <h1>Bienvenue sur le Blog du nouveau roman de Jean Forteroche: "Billet simple pour l'Alaska"</h1>
+            <div class="presentation_container text-center">
+                <p class="presentation">Vous voici sur le site de mon blog consacré à la rédaction de mon dernier ouvrage "Billet simple pour l'Alaska".</p>
+                <p class="presentation">Il vous entrainera au coeur de ce pays désolé et âpre où il faut s'armer de courage pour survivre.</p>
+                <p class="presentation">Vous suivrez les traces de Jack Carpenter plongé dans un imbroglio sentimentalo-policier.</p>
+                <p class="presentation">Seules l'astuce et l'expérience de ce policier roué lui permettront de se sortir de ces affaires qui le mettront 
+                    en fâcheuses postures.</p>
+                <p class="presentation">Vous aurez la possiblité de laisser des commentaires tout au long de la rédaction.</p><p class="presentation">Aussi je vous en prie n'hésitez pas.Vos appréciations seront toujours importantes pour mon inspiration.</p>
+                <p class="presentation">Trêve de bavardage...</p><p class="presentation"> Je vous laisse explorer le blog à loisir. ;) </p>
+                <p class="signature-right">Jean Forteroche</p>
+            </div>
+            
+            
+            
+            <section>
+                {% for episode in episodes %}
+                  <div class="well">  
+                <h2>{{ episode.titre }}</h2>
+                <p> Ecris le {{ episode.creation|date('d/m/Y')}}</p>
+                <p>{{episode.contenu | striptags | slice(0, 100)}}
+                
+                    {% if episode.contenu| striptags|length > 100 %}...{% endif %}</p>
+                <a href="{{path('oc_blog_episode',{'numeroEpisode':episode.numeroEpisode})}}"><button class="btn btn-primary">Lire la suite</button></a>
+                  </div>
+                {% endfor %}
+           </section>
+            
 
-
-        <h1>Bienvenue sur le Blog du nouveau roman de Jean Forteroche: "Billet simple pour l'Alaska"</h1>
-        <div class="contenu col-lg-12">
-            <h2>{{episode.titre}}</h2>
-            {{episode.contenu|raw}}
-            {{episode.creation|date('d/m/Y')}}
-
+            
         </div>
-
-        <div class="contenu col-lg-12">
-            {% for commentaire in episode.commentaires %}
-                {% if not commentaire.modere %}
-                    <div> 
-                        <a href='{{path('oc_blog_signalement',{'commentaire':commentaire.id})}}?token={{csrf_token('signalementToken')}}'>Signaler le commentaire</a>
-                        {{commentaire.contenu}} 
-                        {{commentaire.pseudo}}
-                        {{commentaire.email}} 
-                        {{commentaire.creation|date('d/m/Y')}}
-                        {{commentaire.episode.id}}
-                    </div>
-                {% endif %}
-            {% endfor %}        
-        </div>
-
-
-        <div class="col-lg-12 text-right">
-            <h3 class="text-center btn-primary  " style="font-weight: bold;">Commentez!</h3>
-            {{ form_start(createForm) }}
-            {{ form_widget(createForm) }}
-            <input type="submit" class="btn btn-primary text-right btn-block" value="Envoyer" />
-            {{ form_end(createForm) }}
-        </div>
-
-
-
-        {% if nbEpisodes > 0 %}
-            <nav aria-label="Page navigation" class="text-center">
-                <ul class="pagination">
-                    {% if numeroEpisode!=1 %}  
-                        <li> <a href="{{ path('oc_blog_homepage', {'numeroEpisode':1}) }}" aria-label="First"><span aria-hidden="true">Premier</span></a></li>
-                        {% endif %}
-
-                    {% for i in 1..nbEpisodes %}
-                        <li {% if numeroEpisode==loop.index %}class="active"{% endif %}><a href="{{ path('oc_blog_homepage', {'numeroEpisode':loop.index}) }}">{{ loop.index }} </a></li>
-                        {% endfor %}
-
-                    {% if numeroEpisode!=nbEpisodes %} 
-                        <li><a href="{{ path('oc_blog_homepage', {'numeroEpisode':nbEpisodes}) }}" aria-label="Last"><span aria-hidden="true">Dernier</span></a></li>
-                        {% endif %}
-                </ul>
-            </nav>
-        {% endif %}
-
     </div>
-{% endblock %}
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row"> 
+                <div class="col-md-3 col-sm-4 col-xs-6">
+                    <img class="Jean" src="{{asset('Resources/images/jean3.jpg')}}" alt="photo de Jean Forteroche"/>
+                    <p id="inline_block">Pour de plus amples renseignements: <a href="mailto:j.forteroche@mail.com">j.forteroche@mail.com</a></p>
+                </div>
+                
+                <div class="col-md-3 col-sm-4 col-xs-6">
+                    <h4>A propos de Jean Forteroche</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                    </p>
+                </div> 
+                <div class="col-md-3 col-sm-4 col-xs-7">
+                    <h4>Remerciements</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. </p>
+                </div>
+                <div class="col-md-3 col-sm-4 col-xs-7">
+                    <div id="social-networks">
+                        <a href="http://twitter.com/">
+                            <i class=" fa fa-twitter fa-3x" aria-hidden="true">
+                            </i>
+                        </a>
+                        <a href="http://facebook.com/">
+                            <i class="fa fa-facebook fa-3x" aria-hidden="true">
+                            </i>
+                        </a>
+                        <a href="http://plus.google.com/">
+                            <i class="fa fa-google-plus fa-3x" aria-hidden="true"> 
+                            </i>
+                        </a>
+                    </div>
+                </div>
+                     <a class="btn btn-primary connect" href="{{ url('oc_user_login') }}">Se connecter</a>
+                </div>
+        </div>
+    </footer>
+{% endblock %} 
+
 

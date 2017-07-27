@@ -2,3 +2,10 @@ services:
     oc_user.security.email_authenticator:
         class: OC\UserBundle\Security\EmailAuthenticator
         arguments: ['@router.default','@security.password_encoder']
+
+
+    sl_user.doctrine.encode_password_listener:
+        class: OC\UserBundle\Listener\EncodePasswordListener
+        arguments: ['@security.encoder_factory']
+        tags:
+            - { name: doctrine.event_subscriber }

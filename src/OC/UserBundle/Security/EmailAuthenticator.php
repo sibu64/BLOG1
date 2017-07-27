@@ -14,6 +14,7 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
+use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 
 
 class EmailAuthenticator extends AbstractGuardAuthenticator {
@@ -104,14 +105,11 @@ class EmailAuthenticator extends AbstractGuardAuthenticator {
      * @return UserInterface|null
      */
     public function getUser($credentials, UserProviderInterface $userProvider) {
-        if ($credentials === null) {
-            throw new AuthenticationException('Authentication Failed');
-        }
-
+       
         try {
             return $userProvider->loadUserByUsername($credentials['username']);
         } catch (UsernameNotFoundException $e) {
-            throw new AuthenticationException('Authentication Failed');
+            throw new BadCredentialsException();
         }
     }
 
@@ -133,7 +131,7 @@ class EmailAuthenticator extends AbstractGuardAuthenticator {
      */
     public function checkCredentials($credentials, UserInterface $user) {
         if (!$this->passwordEncoder->isPasswordValid($user, $credentials['password'])) {
-            throw new AuthenticationException('Authentication Failed');
+            throw new BadCredentialsException();
         }
 
         return true;
@@ -154,7 +152,14 @@ class EmailAuthenticator extends AbstractGuardAuthenticator {
      * @return Response|null
      */
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception) {
-        $request->getSession()->set('login_error', $exception->getMessage());
+        if($exception instanceof BadCredentialsException){
+        $request->getSession()->getFlashBag()->add('danger', 'Couple email et mot de passe invalides.');     
+        }
+        else{
+         $request->getSession()->getFlashBag()->add('danger', $exception->getMessageKey());      
+            }
+        
+            
 
         return new RedirectResponse($this->router->generate('oc_user_login'));
     }

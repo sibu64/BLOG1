@@ -1,0 +1,14 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <div class="container text-right">
+        <h1>Bienvenue sur la page de demande de réinitialisation du mot de passe</h1>
+        <h2 class="text-center">Veuillez entrez votre e-mail</h2>
+        {{form_start(reinitialisationForm)}}
+        {{form_widget(reinitialisationForm)}}
+        <button class="btn btn-primary btn-block" type="submit">Soumettre</button>
+        {{form_end(reinitialisationForm)}}
+    </div>
+{% endblock %}

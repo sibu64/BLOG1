@@ -1,15 +1,53 @@
-body{
-    background-image: url("../images/alleeEnneigee.jpg");
+body{ 
+    background: url("../images/snow.jpg") no-repeat;
+    -webkit-background-size: cover; /* pour anciens Chrome et Safari */
+    background-size: cover; /* version standardisée */
+
     margin:0;
-    padding:0;    
+    padding:0;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f0f9ff+0,cbebff+47,a1dbff+100;Blue+3D+%2313 */
+/*background: #f0f9ff;  Old browsers 
+background: -moz-linear-gradient(top, #f0f9ff 0%, #cbebff 47%, #a1dbff 100%);  FF3.6-15 
+background: -webkit-linear-gradient(top, #f0f9ff 0%,#cbebff 47%,#a1dbff 100%);  Chrome10-25,Safari5.1-6 
+background: linear-gradient(to bottom, #f0f9ff 0%,#cbebff 47%,#a1dbff 100%);  W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ 
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f9ff', endColorstr='#a1dbff',GradientType=0 );  IE6-9 */
+
+min-height: 100vh;
+
+
 }
 
 h1{
-    color: #C82829;
+    margin-top:0px;
     font-family: 'Oswald', sans-serif;
     text-align: center;
     font-size: 60px;
+    margin-top: 60px;
+    /*text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);*/
+/*    color: rgba(10,60,150, 0.6);*/
+      color:rgba(228, 243, 249, 0.8);
+    /*text-shadow: 1px 4px 6px #def, 0 0 0 #000, 1px 4px 6px #def;*/
+    text-shadow: -2px -2px 1px rgb(255,255,255) , -1px -1px 1px rgb(255,255,255) , 1px 1px 1px rgba(232,247,255,0.901961) , 1px 1px 0 rgb(42,101,139) , 2px 2px 0 rgb(41,99,138) , 3px 3px 0 rgb(40,97,136) , 4px 4px 0 rgb(39,95,133) , 5px 5px 0 rgb(38,93,131) , 6px 6px 0 rgb(37,90,128) , 7px 7px 0 rgb(36,87,125) , 8px 8px 0 rgb(35,84,121) , 9px 9px 0 rgb(33,80,117) , 10px 10px 0 rgb(31,76,113) , 11px 11px 0 rgb(30,72,108) , 12px 12px 1px rgba(28,67,103,0.498039) , 14px 14px 12px rgba(5,13,20,0.498039) ;
+    -webkit-transition: all 201ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
+    -moz-transition: all 201ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
+    -o-transition: all 201ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
+    transition: all 201ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
     
+    -webkit-transform: none;
+    transform: none;
+    -webkit-transform-origin: 50% 50% 0;
+    transform-origin: 50% 50% ;
 }
 
 table{
@@ -19,6 +57,7 @@ table{
 ul{
    list-style-type: none; 
    background-color: white;
+   padding-left: 0px;
    
 }
 
@@ -30,17 +69,80 @@ a{
     text-align: center;
 }
 
-
-.contenu{
-    background-color: white;
-}
-
 .control{
     width:95%;   
 }
 
-label{
-    font-size: 20px;
+ .btn{
+    font-size: 16px;
+}
+
+.presentation{
+    font-size:26px;
+    background-color: transparent;
+/*    color: #3399ff;*/
+color:white;
+    font-weight:bolder;
+    text-shadow: -1px -1px 1px rgb(0,0,0) , -1px -1px 1px rgb(0,0,0);
+
+    
+}
+
+.presentation_container{
+    margin-top: 60px;
+    
+}
+
+.containerAlpha{
+    background-color: transparent;
+}
+
+footer{
+/*    position: absolute;
+    bottom:0px;*/
+    color: #08C;
+    background-color: white;
+}
+
+.signature-right{
+    margin-left: 45%;
+    font-weight: bolder;
+}
+
+.footer{
+    width:100%;
+}
+
+p,.presentation{
+/*  font-family: 'Roboto Slab', serif; */
+ font-family: 'Oswald', sans-serif;
+}
+
+.connect{
+    display:inline-block;
+    margin-top:20px;
+} 
+
+.fa-google-plus{ color:firebrick;}
+.fa-facebook{color:dodgerblue;}
+.fa-twitter{color:deepskyblue;}   
+ 
+.footer {
+    background-color: #1b1b1b;
+}
+
+#social-networks{
+    margin-top:10px;
 }
 
 
+.btn-block{
+    width:100%;
+    
+}
+
+.label{
+    color:white;
+    font-size:100%;
+    padding:0;
+}

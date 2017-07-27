@@ -2,9 +2,9 @@ oc_blog_admin_episode:
     resource: "@OCBlogBundle/Resources/config/routing/episode.yml"
     prefix:   /admin/episode
 
-oc_blog_homepage:
-    path:     /{numeroEpisode}
-    defaults: { _controller: OCBlogBundle:Default:index, numeroEpisode: 1 }
+oc_blog_episode:
+    path:     /episode/{numeroEpisode}
+    defaults: { _controller: OCBlogBundle:Default:view, numeroEpisode: 1 }
     requirements: 
         numeroEpisode: \d+
 
@@ -16,3 +16,7 @@ oc_blog_signalement:
     path: /signalement/{commentaire}
     defaults:  { _controller: OCBlogBundle:Default:signalementCommentaire}
 
+oc_blog_homepage:
+    path:     /
+    defaults: { _controller: OCBlogBundle:Default:index, numeroEpisode: 1  }
+    

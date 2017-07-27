@@ -1,15 +1,46 @@
 <?php
-
 namespace OC\BlogBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use OC\BlogBundle\Entity\Commentaire;
+use OC\BlogBundle\Entity\Episode;
 
 
 class DefaultController extends Controller
 {
-    public function indexAction(Request $request, $numeroEpisode)
+    
+    
+    
+    
+    public function indexAction($numeroEpisode){
+        
+        $em=$this->getDoctrine()->getManager();
+        $episodeRepository= $em->getRepository('OCBlogBundle:Episode');
+        $episodes= $episodeRepository->findAll($numeroEpisode);
+        
+        
+        $nbEpisodes=$episodeRepository->getNbEpisodes();
+//        $commentaire=new Commentaire;
+//        $createForm = $this->createForm('OC\BlogBundle\Form\CommentaireType', $commentaire);
+//        $createForm->handleRequest($request);
+//        if ($createForm->isSubmitted() && $createForm->isValid()) {
+//            $commentaire->setEpisode($episode);
+//            $em->persist($commentaire);
+//            $em->flush();
+        
+           // return $this->redirectToRoute('oc_blog_homepage', array('numeroEpisode'=>$numeroEpisode));
+       // }
+    
+        return $this->render('OCBlogBundle:Default:index.html.twig',array(
+            'episodes'=> $episodes,
+            'nbEpisodes'=>$nbEpisodes,
+            'numeroEpisode'=>$numeroEpisode,
+            ));
+    }
+    
+    
+    public function viewAction(Request $request, $numeroEpisode)
     {
         $em=$this->getDoctrine()->getManager();
         $episodeRepository= $em->getRepository('OCBlogBundle:Episode');
@@ -27,7 +58,7 @@ class DefaultController extends Controller
             $commentaire->setEpisode($episode);
             $em->persist($commentaire);
             $em->flush();
-            return $this->redirectToRoute('oc_blog_homepage', array('numeroEpisode'=>$numeroEpisode));
+            return $this->redirectToRoute('oc_blog_episode', array('numeroEpisode'=>$numeroEpisode));
         }
     
 
@@ -35,7 +66,7 @@ class DefaultController extends Controller
                        ->getCommentsForBlog($episode->getId());
 
         
-        return $this->render('OCBlogBundle:Default:index.html.twig', array(
+        return $this->render('OCBlogBundle:Default:episode.html.twig', array(
             'episode'      => $episode,
             'nbEpisodes'=>$nbEpisodes,
             'numeroEpisode'=>$numeroEpisode,
@@ -57,10 +88,10 @@ class DefaultController extends Controller
           $this->addFlash('success', 'Commentaire signalé.');
                     
           
-         return  $this->redirectToRoute('oc_blog_homepage',array('numeroEpisode'=>$commentaire->getEpisode()->getId()));
+         return  $this->redirectToRoute('oc_blog_episode',array('numeroEpisode'=>$commentaire->getEpisode()->getId()));
         }
           $this->addFlash('danger', 'Token invalide, veuillez réessayer!');
-          return $this->redirectToRoute('oc_blog_homepage',array('numeroEpisode'=>$commentaire->getEpisode()->getId()));
+          return $this->redirectToRoute('oc_blog_episode',array('numeroEpisode'=>$commentaire->getEpisode()->getId()));
     }
     
     

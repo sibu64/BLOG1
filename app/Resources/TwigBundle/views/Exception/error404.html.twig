@@ -1,0 +1,12 @@
+{% extends "::base.html.twig" %}
+{% block stylesheets %}
+    {{parent()}}
+{% endblock %}
+{% block body %}
+    <h1 class="text-center"> Page introuvable </h1>
+    <div class="text-center">
+    <h2>La page demandée n'a pas pu être retrouvée. Vérifiez l'URL.</h2>
+    <a href="{{ path('oc_blog_homepage') }}"><h3>Retourner à l'accueil</h3></a>
+
+{% endblock %}
+

@@ -6,13 +6,14 @@
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" class="col-xs-10 col-sm-10 col-md-11 col-lg-11  btn  btn-primary control text-center" style="margin-bottom:10px;margin-left:40px;{#width:94%;#}" value="Modifier" />
+        <input type="submit" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn btn-block btn-primary control text-center" style="margin-bottom:10px;" value="Modifier" />
     {{ form_end(edit_form) }}
 
     <ul>
         <li>
-            <a href="{{ path('admin_commentaire_index') }}" class="col-xs-10 col-sm-10 col-md-10 col-lg-10 btn btn-block  btn-info  text-center" style="margin-bottom:10px;padding-left:40px; ">Retour à la liste</a>
+            <a href="{{ path('admin_commentaire_index') }}" class="col-xs-10 col-sm-10 col-md-10 col-lg-10 btn btn-block btn-info text-center" style="margin-bottom:10px;padding-left:40px; ">Retour à la liste</a>
         </li>
     </ul>
     </div>
 {% endblock %}
+
