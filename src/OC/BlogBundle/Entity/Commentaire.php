@@ -3,6 +3,7 @@
 namespace OC\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Commentaire
@@ -27,21 +28,23 @@ class Commentaire
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="L'email ne devrait pas être vide.")
+     * @Assert\Email(message = "L'email '{{ value }}' n'est pas un email valide.",
+     *     checkMX = true)
      * @ORM\Column(name="email", type="string", length=255, unique=true)
      */
     private $email;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Le pseudo ne devrait pas être vide.")
      * @ORM\Column(name="pseudo", type="string", length=255)
      */
     private $pseudo;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Le contenu du message ne devrait pas être vide.")
      * @ORM\Column(name="contenu", type="text")
      */
     private $contenu;
