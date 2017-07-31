@@ -37,7 +37,4 @@ monolog:
         #    type: chromephp
         #    level: info
 
-swiftmailer:
-    transport: gmail
-    username:  sib64320@gmail.com
-    password:  Sibu64320!
+
