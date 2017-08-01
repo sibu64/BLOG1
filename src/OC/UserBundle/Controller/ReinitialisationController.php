@@ -26,8 +26,8 @@ class ReinitialisationController extends Controller {
                 $jetonReinitialisation = $user->getJetonReinitialisation();
                 $message = \Swift_Message::newInstance()
                         ->setSubject('Lien de réinitialisation')
-                        ->setFrom('sib64320@gmail.com')
-                        ->setTo('simon-64@hotmail.com')
+                        ->setFrom($this->getParameter('mailer_user'))
+                        ->setTo($user->getEmail())
                         ->setBody(
                         $this->renderView(
                                 'OCUserBundle:Reinitialisation:mail_reinitialisation.html.twig', array('email' => $email, 'jetonReinitialisation' => $jetonReinitialisation)), 'text/html');
