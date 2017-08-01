@@ -41,10 +41,13 @@
 
     <ul>
         <li class="center">
-            <a href="{{ path('admin_episode_new') }}">Créer un nouvel épisode</a>
+            <a class="btn btn-success btn-block" href="{{ path('admin_episode_new') }}">Créer un nouvel épisode</a>
         </li>
         <li>
            <a class="btn btn-primary btn-block" href="{{url('admin_commentaire_index')}}">Gérer les commentaires</a>
+        </li>
+        <li>
+        <a class="btn btn-danger btn-block" style="margin-top:10px;" href="{{path('oc_user_logout')}}">Se déconnecter</a>
         </li>
     </ul>
     </div>
