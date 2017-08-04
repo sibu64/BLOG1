@@ -48,7 +48,7 @@ class Episode
     /**
      * @var Collection
      *
-     * @ORM\OneToMany(targetEntity="OC\BlogBundle\Entity\Commentaire", mappedBy="episode")
+     * @ORM\OneToMany(targetEntity="OC\BlogBundle\Entity\Commentaire", mappedBy="episode", orphanRemoval=true)
      */
     private $commentaires;
     /**
